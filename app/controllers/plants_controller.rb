@@ -1,4 +1,5 @@
 class PlantsController < ApplicationController
+    wrap parameters format: []
     def index
         plants= Plant.all
         render json: plants
@@ -6,7 +7,7 @@ class PlantsController < ApplicationController
     def show
         plant = Plant.find_by(id: params[:id])
         if plant
-            render json: plant
+            render json: plant, status: :ok
         else
             render json: {error: "No plant found"}, status: :not_found
         end
